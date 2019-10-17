@@ -1,23 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/17 20:31:09 by jiglesia          #+#    #+#             */
+/*   Updated: 2019/10/17 20:32:57 by jiglesia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int ft_atoi(const char *nptr)
+int	ft_atoi(const char *nptr)
 {
-  int i;
-  int a;
-  int b;
+	int i;
+	int a;
+	int b;
 
-  i = 0;
-  b = 0;
-  while (nptr[i] == ' ')
-    i++;
-  if (nptr[i] == '-')
-    {
-      a = -1;
-      i++;
-    }
-  else
-    a = 1;
-  while (nptr[i] >= '0' && nptr[i++] <= '9')
-    b = b * 10 + a * (nptr[i] - '0');
-  return (b);
+	i = 0;
+	b = 0;
+	while (nptr[i] == ' ')
+		i++;
+	if (nptr[i] == '-')
+	{
+		a = -1;
+		i++;
+	}
+	else
+		a = 1;
+	while (nptr[i] >= '0' && nptr[i++] <= '9')
+		b = b * 10 + a * (nptr[i] - '0');
+	return (b);
 }
