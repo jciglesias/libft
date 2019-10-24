@@ -6,13 +6,13 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 21:52:49 by jiglesia          #+#    #+#             */
-/*   Updated: 2019/10/18 18:07:43 by jiglesia         ###   ########.fr       */
+/*   Updated: 2019/10/24 16:51:14 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_verif(char c, char const *set)
+static int		ft_verif(char c, char const *set)
 {
 	int i;
 
@@ -25,7 +25,7 @@ int		ft_verif(char c, char const *set)
 	return (0);
 }
 
-int		ft_countrev(char const *s, char const *set)
+static int		ft_countrev(char const *s, char const *set)
 {
 	char	*str;
 	int		i;
@@ -41,7 +41,7 @@ int		ft_countrev(char const *s, char const *set)
 	return (i - j);
 }
 
-char	*ft_strtrim(char const *s, char const *set)
+char			*ft_strtrim(char const *s, char const *set)
 {
 	int		i;
 	int		j;
