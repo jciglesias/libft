@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 21:09:56 by jiglesia          #+#    #+#             */
-/*   Updated: 2019/10/17 21:12:02 by jiglesia         ###   ########.fr       */
+/*   Updated: 2019/10/24 18:32:45 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,12 @@ char	*ft_strdup(const char *s)
 		i++;
 	if (!(dup = (char *)malloc(sizeof(char) * (i + 1))))
 		return (NULL);
-	while (i-- > 0)
-		*(dup++) = *(s++);
+	i = 0;
+	while (s[i])
+	{
+		dup[i] = (char)s[i];
+		i++;
+	}
+	dup[i] = 0;
 	return (dup);
 }

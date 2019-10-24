@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 21:08:05 by jiglesia          #+#    #+#             */
-/*   Updated: 2019/10/24 16:19:21 by jiglesia         ###   ########.fr       */
+/*   Updated: 2019/10/24 21:23:06 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ char	*ft_strchr(const char *s, int c)
 		if (s[i++] == a)
 			return ((char *)s + --i);
 	}
+	if (a == '\0')
+		return ((char *)s + i);
 	return (NULL);
 }

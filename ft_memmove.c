@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 12:20:31 by jiglesia          #+#    #+#             */
-/*   Updated: 2019/10/11 18:26:46 by jiglesia         ###   ########.fr       */
+/*   Updated: 2019/10/24 18:14:55 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 
 	dst1 = (unsigned char *)dst;
 	src1 = (unsigned char *)src;
-	i = 0;
+	i = 1;
 	if (dst1 > src1)
 	{
 		while (i <= len)
