@@ -6,34 +6,27 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 22:15:41 by jiglesia          #+#    #+#             */
-/*   Updated: 2019/10/17 22:18:23 by jiglesia         ###   ########.fr       */
+/*   Updated: 2019/10/24 16:34:12 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		every_char(char *str, int pos, char *c)
+static int		every_char(const char *str, int pos, char c)
 {
-	int i;
-
-	i = 0;
-	while (c[i])
-	{
-		if (str[pos] == c[i])
-			return (1);
-		i++;
-	}
+	if (str[pos] == c)
+		return (1);
 	return (0);
 }
 
-int		ft_count_letters(char *str, int letrs, char *c)
+static int		ft_count_letters(const char *str, int letrs, char c)
 {
 	while (str[letrs] && !every_char(str, letrs, c))
 		letrs++;
 	return (letrs);
 }
 
-int		ft_count_words(char *str, int spos, int cont, char *c)
+static int		ft_count_words(const char *str, int spos, int cont, char c)
 {
 	while (str[spos] && every_char(str, spos, c))
 		spos++;
@@ -44,7 +37,7 @@ int		ft_count_words(char *str, int spos, int cont, char *c)
 	return (ft_count_words(str, spos, cont + 1, c));
 }
 
-char	**ft_decompose(char **tab, char *str, int spos, char *c)
+static char		**ft_decompose(char **tab, const char *str, int spos, char c)
 {
 	int letrs;
 	int i;
@@ -73,16 +66,16 @@ char	**ft_decompose(char **tab, char *str, int spos, char *c)
 	return (tab);
 }
 
-char	**ft_split(char const *str, char *charset)
+char			**ft_split(char const *s, char c)
 {
-	char**tab;
+	char **tab;
 
-	if (str)
+	if (s)
 	{
 		if (!(tab = (char**)malloc(sizeof(char*) *
-								(ft_count_words(str, 0, 0, charset) + 1))))
+								(ft_count_words(s, 0, 0, c) + 1))))
 			return (NULL);
-		return (ft_decompose(tab, str, 0, charset));
+		return (ft_decompose(tab, s, 0, c));
 	}
 	return (NULL);
 }
