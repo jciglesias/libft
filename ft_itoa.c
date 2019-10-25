@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 22:22:20 by jiglesia          #+#    #+#             */
-/*   Updated: 2019/10/24 15:44:42 by jiglesia         ###   ########.fr       */
+/*   Updated: 2019/10/25 17:40:24 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@ static void		ft_rev(char *str)
 	int		j;
 	char	*dup;
 
-	dup = str;
+	dup = ft_strdup(str);
 	i = 0;
-	j = 0;
-	while (str[j + 1])
-		j++;
+	j = ft_strlen(dup) - 1;
 	while (str[i])
-		str[i++] = dup[j--];
+	{
+		if ((dup[j] >= '0' && dup[j] <= '9') || dup[j] == '-')
+			str[i++] = dup[j--];
+		else
+			j--;
+	}
 }
 
 static char		*ft_alloc(int n)
@@ -50,13 +53,19 @@ char			*ft_itoa(int n)
 
 	i = 0;
 	str = ft_alloc(n);
+	if (n == 0)
+		return ("0");
 	while (n / 10 != 0 || n % 10 != 0)
 	{
-		str[i++] = n % 10 + '0';
+		if (n < 0)
+			str[i++] = (n % 10) * -1 + '0';
+		else
+			str[i++] = n % 10 + '0';
 		if (n / 10 == 0 && n < 0)
 			str[i] = '-';
 		n /= 10;
 	}
+	str[++i] = 0;
 	ft_rev(str);
 	return (str);
 }
