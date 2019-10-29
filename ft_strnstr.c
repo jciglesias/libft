@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 21:24:37 by jiglesia          #+#    #+#             */
-/*   Updated: 2019/10/24 21:41:18 by jiglesia         ###   ########.fr       */
+/*   Updated: 2019/10/29 16:09:45 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	i = 0;
 	if (!*little)
 		return ((char *)big);
-	while (len-- > 0)
+	while (big[i] && len-- > 0)
 	{
 		if (big[i] == little[0])
 		{
