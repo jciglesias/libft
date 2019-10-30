@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 21:15:48 by jiglesia          #+#    #+#             */
-/*   Updated: 2019/10/29 19:02:28 by jiglesia         ###   ########.fr       */
+/*   Updated: 2019/10/30 14:46:09 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 		dst[i] = src[i];
 		i++;
 	}
-	if (size >= 0)
-		dst[i] = 0;
+	dst[i] = 0;
 	return (ft_strlen(src));
 }

@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 19:50:20 by jiglesia          #+#    #+#             */
-/*   Updated: 2019/10/29 18:06:17 by jiglesia         ###   ########.fr       */
+/*   Updated: 2019/10/30 14:16:46 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	unsigned int		i;
 
 	i = 0;
-	if (start < 0)
-		start = 0;
 	str = (char *)ft_calloc(sizeof(char), len + 1);
 	if (ft_strlen(s) > start)
 	{
