@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 21:52:49 by jiglesia          #+#    #+#             */
-/*   Updated: 2019/10/29 18:17:56 by jiglesia         ###   ########.fr       */
+/*   Updated: 2019/10/30 20:32:13 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ static int		ft_countrev(char const *s, char const *set)
 	int		j;
 
 	i = 0;
-	str = ft_strdup(s);
+	if (!(str = ft_strdup(s)))
+		return (0);
 	j = ft_strlen(s);
 	while (str[i])
 		str[i++] = s[--j];
