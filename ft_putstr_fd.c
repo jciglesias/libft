@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 19:34:11 by jiglesia          #+#    #+#             */
-/*   Updated: 2019/10/18 19:36:20 by jiglesia         ###   ########.fr       */
+/*   Updated: 2019/11/01 19:49:05 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ void	ft_putstr_fd(char *s, int fd)
 	int i;
 
 	i = 0;
-	while (s[i])
+	while (s && s[i])
 		ft_putchar_fd(s[i++], fd);
 }

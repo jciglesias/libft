@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 21:52:49 by jiglesia          #+#    #+#             */
-/*   Updated: 2019/10/30 20:32:13 by jiglesia         ###   ########.fr       */
+/*   Updated: 2019/11/01 19:47:01 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int		ft_verif(char c, char const *set)
 	int i;
 
 	i = 0;
-	while (set[i])
+	while (set && set[i])
 	{
 		if (c == set[i++])
 			return (1);
@@ -49,6 +49,8 @@ char			*ft_strtrim(char const *s, char const *set)
 	int		a;
 	char	*str;
 
+	if (!s)
+		return (NULL);
 	i = 0;
 	while (ft_verif(s[i], set))
 		i++;
