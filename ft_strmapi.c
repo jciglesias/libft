@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 19:14:26 by jiglesia          #+#    #+#             */
-/*   Updated: 2019/11/01 19:48:09 by jiglesia         ###   ########.fr       */
+/*   Updated: 2019/11/04 15:32:44 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int a, char c))
 	char				*str;
 
 	i = 0;
-	if (!s || !(str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1))))
+	if (!s || !f || !(str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1))))
 		return (NULL);
 	while (s[i])
 	{

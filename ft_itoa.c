@@ -6,7 +6,7 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 22:22:20 by jiglesia          #+#    #+#             */
-/*   Updated: 2019/10/30 19:34:48 by jiglesia         ###   ########.fr       */
+/*   Updated: 2019/11/04 15:31:21 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ static char		*ft_alloc(int n)
 	int		i;
 	char	*str;
 
-	i = 2;
+	if (n < 0)
+		i = 2;
+	else
+		i = 1;
 	while (n /= 10)
 		i++;
 	if (!(str = (char *)malloc(sizeof(char) * ++i)))
