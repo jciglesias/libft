@@ -6,76 +6,95 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 22:15:41 by jiglesia          #+#    #+#             */
-/*   Updated: 2019/10/24 16:34:12 by jiglesia         ###   ########.fr       */
+/*   Updated: 2019/11/07 23:58:13 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		every_char(const char *str, int pos, char c)
+static int		ger_nb_words(char *str, char c)
 {
-	if (str[pos] == c)
-		return (1);
-	return (0);
-}
+	int			i;
+	int			nb_words;
 
-static int		ft_count_letters(const char *str, int letrs, char c)
-{
-	while (str[letrs] && !every_char(str, letrs, c))
-		letrs++;
-	return (letrs);
-}
-
-static int		ft_count_words(const char *str, int spos, int cont, char c)
-{
-	while (str[spos] && every_char(str, spos, c))
-		spos++;
-	if (!str[spos])
-		return (cont);
-	while (str[spos] && !every_char(str, spos, c))
-		spos++;
-	return (ft_count_words(str, spos, cont + 1, c));
-}
-
-static char		**ft_decompose(char **tab, const char *str, int spos, char c)
-{
-	int letrs;
-	int i;
-	int tpos;
-
-	tpos = 0;
-	while (str[spos])
+	i = 0;
+	nb_words = 0;
+	while (str[i])
 	{
-		while (str[spos] && every_char(str, spos, c))
-			spos++;
-		if (!str[spos])
-			break ;
-		letrs = ft_count_letters(str, spos, c);
-		if (!(tab[tpos] = (char*)malloc(sizeof(char) * (letrs + 1 - spos))))
-			return (0);
-		i = 0;
-		while (str[spos] && !every_char(str, spos, c))
-		{
-			tab[tpos][i] = str[spos];
-			spos++;
-			i++;
-		}
-		tab[tpos++][i] = '\0';
+		if ((!i && (str[i] != c)) ||
+			(i > 0 && (str[i - 1] == c) && (str[i] != c)))
+			nb_words++;
+		i++;
 	}
-	tab[tpos] = 0;
-	return (tab);
+	return (c);
+}
+
+static int		get_lens(char *str, int i, char c)
+{
+	int			lens;
+
+	lens = 0;
+	while (str[i] && (str[i] != c))
+	{
+		i++;
+		lens++;
+	}
+	return (lens);
+}
+
+char			**get_tab(char **arr, char *str, char c)
+{
+	int			i;
+	int			j;
+	int			k;
+	int			lens;
+
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		k = 0;
+		while (str[i] && (str[i] == c))
+			i++;
+		if (str[i] && (str[i] != c))
+		{
+			lens = get_lens(str, i, c);
+			arr[j] = (char *)malloc(lens + 1);
+			while (str[i] && (str[i] != c))
+				arr[j][k++] = str[i++];
+			arr[j][k] = '\0';
+			arr[++j] = NULL;
+		}
+	}
+	return (arr);
+}
+
+static char		**empty_arr(void)
+{
+	char		**res;
+
+	res = (char **)malloc(sizeof(char *));
+	res[0] = NULL;
+	return (res);
 }
 
 char			**ft_split(char const *s, char c)
 {
-	char **tab;
+	char		*str;
+	int			words_nb;
+	char		**arr;
 
-	if (s)
-	{
-		if (!(tab = (char**)malloc(sizeof(char*) *
-								(ft_count_words(s, 0, 0, c) + 1))))
-			return (NULL);
-		return (ft_decompose(tab, s, 0, c));
-	}
-	return (NULL);
+	str = (char *)s;
+	arr = NULL;
+	if (!str || !str[0])
+		return (empty_arr());
+	words_nb = ger_nb_words(str, c);
+	if (!words_nb)
+		return (empty_arr());
+	arr = (char **)malloc(sizeof(char *) * (words_nb + 1));
+	if (!arr)
+		return (NULL);
+	arr[words_nb] = NULL;
+	arr = get_tab(arr, str, c);
+	return (arr);
 }

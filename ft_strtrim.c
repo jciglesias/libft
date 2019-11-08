@@ -6,59 +6,30 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 21:52:49 by jiglesia          #+#    #+#             */
-/*   Updated: 2019/11/04 15:19:31 by jiglesia         ###   ########.fr       */
+/*   Updated: 2019/11/07 23:57:22 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_verif(char c, char const *set)
+char		*ft_strtrim(char const *s1, char const *set)
 {
-	int i;
-
-	i = 0;
-	if (c && set)
-		while (set && set[i])
-			if (c == set[i++])
-				return (1);
-	return (0);
-}
-
-static int		ft_countrev(char const *s, char const *set)
-{
-	char	*str;
+	int		start;
+	int		end;
 	int		i;
-	int		j;
 
-	i = 0;
-	if (!s || !(str = ft_strdup(s)))
-		return (0);
-	j = ft_strlen(s);
-	while (str[i])
-		str[i++] = s[--j];
-	while (ft_verif(str[j], set))
-		j++;
-	return (i - j);
-}
-
-char			*ft_strtrim(char const *s, char const *set)
-{
-	int		i;
-	int		j;
-	int		a;
-	char	*str;
-
-	if (!s || !set)
+	if (!s1 || !set)
 		return (NULL);
+	if (s1[1] == '\0')
+		return (ft_calloc(1, sizeof(char)));
+	end = ft_strlen((char *)s1) - 1;
 	i = 0;
-	while (ft_verif(s[i], set))
+	while (s1[i] && ft_strchr(set, s1[i]))
 		i++;
-	j = ft_countrev(&s[i], set);
-	if (!(str = (char *)malloc(sizeof(char) * (j + 1))))
-		return (NULL);
-	a = 0;
-	while (a < j)
-		str[a++] = s[i++];
-	str[a] = 0;
-	return (str);
+	start = i;
+	if (start > end)
+		return (ft_calloc(1, sizeof(char)));
+	while (ft_strchr(set, s1[end]))
+		end--;
+	return (ft_substr(s1, start, end - start + 1));
 }

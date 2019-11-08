@@ -6,68 +6,54 @@
 /*   By: jiglesia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 22:22:20 by jiglesia          #+#    #+#             */
-/*   Updated: 2019/11/04 15:31:21 by jiglesia         ###   ########.fr       */
+/*   Updated: 2019/11/07 23:59:03 by jiglesia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		ft_rev(char *str)
+static int			get_size(int n)
 {
-	int		i;
-	int		j;
-	char	*dup;
+	int				size;
 
-	dup = ft_strdup(str);
-	i = 0;
-	j = ft_strlen(dup) - 1;
-	while (str[i])
+	size = 1;
+	if (n < 0)
 	{
-		if ((dup[j] >= '0' && dup[j] <= '9') || dup[j] == '-')
-			str[i++] = dup[j--];
-		else
-			j--;
+		size++;
+		n = -n;
 	}
+	while (n > 10)
+	{
+		size++;
+		n = n / 10;
+	}
+	return (size);
 }
 
-static char		*ft_alloc(int n)
+static char			*get_converted_str(char *str, unsigned int res, int *i)
 {
-	int		i;
-	char	*str;
-
-	if (n < 0)
-		i = 2;
-	else
-		i = 1;
-	while (n /= 10)
-		i++;
-	if (!(str = (char *)malloc(sizeof(char) * ++i)))
-		return (NULL);
-	ft_memset(str, 0, i);
+	if (res >= 10)
+		get_converted_str(str, res / 10, i);
+	str[(*i)++] = res % 10 + '0';
 	return (str);
 }
 
-char			*ft_itoa(int n)
+char				*ft_itoa(int n)
 {
-	int		i;
-	char	*str;
+	int				i;
+	unsigned int	res;
+	char			*str;
 
 	i = 0;
-	if (!(str = ft_alloc(n)))
+	res = n;
+	if (!(str = (char *)malloc(get_size(n) + 1)))
 		return (NULL);
-	if (n == 0)
-		return ("0");
-	while (n / 10 != 0 || n % 10 != 0)
+	if (n < 0)
 	{
-		if (n < 0)
-			str[i++] = (n % 10) * -1 + '0';
-		else
-			str[i++] = n % 10 + '0';
-		if (n / 10 == 0 && n < 0)
-			str[i] = '-';
-		n /= 10;
+		str[i++] = '-';
+		res = -1 * n;
 	}
-	str[++i] = 0;
-	ft_rev(str);
+	str = get_converted_str(str, res, &i);
+	str[i] = '\0';
 	return (str);
 }
